@@ -1,8 +1,8 @@
+# ---- This iteration of the script randomly creates a pool of three colors,
+# this colors are then chosen at random during the creation of the tibble.
+
 library(updateme)
 library(tidyverse)
-library(markdown)
-library(magick)
-library(gganimate)
 
 setwd('~/Desktop')
 
