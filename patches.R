@@ -18,11 +18,6 @@ scales::show_col(c(rc1, rc2, rc3), ncol = 3)
 # Create a vector with the colors to pick one at random later
 rcolors <- c(rc1, rc2, rc3)
 
-# Function to pick a random color from rcolors
-pick_random_color <- function() {
-  sample(rcolors, 1)
-}
-
 # Create a tibble using one random color picked at the start
 # Replacements allows colors to be repeated
 flag_colors <- tibble(
@@ -41,15 +36,8 @@ flag_colors <- tibble(
   inner5 = if_else(picker5 == "a", outer, sample(rcolors, 1, replace = TRUE))
 )
 
-# Create a function to pick one of the inner at random
-pick_random_inner <- function() {
-  sample(c('inner1', 'inner2', 'inner3', 'inner4', 'inner5'), 1)
-}
-
-# Randomly pick one of the inner columns
-random_inner <- pick_random_inner()
-
-# Create a function for the patch plot
+# Create a function for the patch plot.
+# This is left unchanged from the original version.
 patch_plot <- function(data, inner, cons = 2.15, radius = 0.25){
   c1 = 0.25*(sqrt(5) - 1)*radius
   c2 = 0.25*(sqrt(5) + 1)*radius
@@ -63,7 +51,7 @@ patch_plot <- function(data, inner, cons = 2.15, radius = 0.25){
     geom_point(aes(x = x + s2, y = y - c2), size = 5*cons) +
     geom_point(aes(x = x - s2, y = y - c2), size = 5*cons) +
     geom_point(aes(x = x - s1, y = y + c1), size = 5*cons) +
-    geom_point(aes(color = .data[[inner]]), size = 4*cons) + 
+    geom_point(aes(color = {{inner}}), size = 4*cons) + 
     scale_color_identity() + 
     coord_fixed() + 
     xlim(c(0.5, 6.5)) +
@@ -71,18 +59,15 @@ patch_plot <- function(data, inner, cons = 2.15, radius = 0.25){
     theme_void()
 }
 
-# Generate and save 10 plots
-plot_files <- vector("list", 10)
-for (i in 1:10) {
-    p <- patch_plot(flag_colors, inner = inner1)
-  plot_file <- paste0("pp", i, ".png")
-  ggsave(plot_file, p, width = 6, height = 9)
-  plot_files[[i]] <- plot_file
-}
-  
-# # Use magick to combine the plots into an animated GIF
-# images <- image_read(plot_files)
-# animation <- image_animate(images, fps = 1)  # 1 frame per second
-# 
-# # Save the animated GIF
-# image_write(animation, 'animated_plots.gif')
+# Create and save 5 plots, one for each of the inners. 
+i1 = patch_plot(data = flag_colors, inner = inner1)
+i2 = patch_plot(data = flag_colors, inner = inner2)
+i3 = patch_plot(data = flag_colors, inner = inner3)
+i4 = patch_plot(data = flag_colors, inner = inner4)
+i5 = patch_plot(data = flag_colors, inner = inner5)
+
+ggsave(filename = 'i1.png', plot = i1, width = 7, height = 10)
+ggsave(filename = 'i2.png', plot = i2, width = 7, height = 10)
+ggsave(filename = 'i3.png', plot = i3, width = 7, height = 10)
+ggsave(filename = 'i4.png', plot = i4, width = 7, height = 10)
+ggsave(filename = 'i5.png', plot = i5, width = 7, height = 10)
