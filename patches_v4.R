@@ -3,7 +3,7 @@
 
 library(tidyverse)
 library(magick)
-library(scales)
+# library(scales)
 
 # Loop to generate and store 3 random colors in separate values
 for (i in 1:3) {
@@ -25,6 +25,11 @@ pick_random_color <- function() {
 # Another function was needed to prevent colors repeating for both repetitions of mid and outer
 pick_two_different_colors <- function() {
   colors <- sample(rcolors, 2, replace = FALSE)
+}
+
+# Create a function to pick one of the inner columns at random
+pick_random_inner <- function() {
+  sample(c('inner1', 'inner2', 'inner3', 'inner4', 'inner5'), 1)
 }
 
 # Create a tibble using one random color picked at the start
@@ -66,11 +71,6 @@ patch_plot <- function(data, inner, cons = 2.15, radius = 0.25){
     xlim(c(0.5, 6.5)) +
     ylim(c(0.5, 9.5)) +
     theme_void()
-}
-
-# Create a function to pick one of the inner columns at random
-pick_random_inner <- function() {
-  sample(c('inner1', 'inner2', 'inner3', 'inner4', 'inner5'), 1)
 }
 
 # Generate and save 10 plots
