@@ -1,7 +1,7 @@
 # In this version I am getting closer to where I want to be, but not there yet.
 # Instead of creating a pool of three colors, I created a variable to store colors().
 # From this variable, colors will be chosen at random during the creation of the tibble.
-# This allows for a wider variety of colors to be used the inners whilst maitaining mid and outter consistency.
+# This allows for a wider variety of colors to be used the inners whilst maintaining mid and outter consistency.
 
 library(updateme)
 library(tidyverse)
