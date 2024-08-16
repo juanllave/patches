@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(magick)
+
 ```
 
 Given that recently I stumbled upon a lot of free time, I decided to go back to continue learning R, a tool that I used heavily a couple of years ago, but that have not used as much as I would like to recently.
