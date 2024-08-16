@@ -5,6 +5,9 @@ library(tidyverse)
 library(magick)
 # library(scales)
 
+dir <- '~/Documents/repos/R/patches/payloads'
+setwd(dir)
+
 # Loop to generate and store 3 random colors in separate values
 for (i in 1:3) {
   color_name <- paste0("rc", i)
