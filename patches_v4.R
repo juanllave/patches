@@ -88,7 +88,7 @@ plot_files <- as_vector(plot_files)
 
 # Use magick to combine the plots into an animated GIF
 images <- image_read(plot_files)
-animation <- image_animate(images, fps = 2.5)  # 5 frames per second
+animation <- image_animate(images, fps = 2)  # 5 frames per second
 
 # Save the animated GIF
 image_write(animation, 'ri.gif')
